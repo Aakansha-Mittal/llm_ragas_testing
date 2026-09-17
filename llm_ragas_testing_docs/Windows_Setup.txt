@@ -1,0 +1,168 @@
+WINDOWS SETUP GUIDE
+LLM / RAG EVALUATION WITH RAGAS
+================================
+
+Purpose
+-------
+Step-by-step installation and setup of an LLM/RAG evaluation project on Windows using Python, RAGAS, and an OpenAI-compatible evaluator.
+
+TARGET ENVIRONMENT
+------------------
+- Windows 10/11
+- PowerShell
+- Python 3.11+
+- Git
+- VS Code
+- Python virtual environment
+- RAGAS
+- OpenAI Python SDK
+- Optional LangChain OpenAI integration
+
+1. SOFTWARE CHECKLIST
+---------------------
+Software       Purpose                         Verify
+Python 3.12   Run evaluation code              python --version
+Git            Source control                  git --version
+VS Code        Edit/run Python                 code --version
+RAGAS          RAG/LLM evaluation              python -c "import ragas; print(ragas.__version__)"
+OpenAI SDK     LLM/evaluator access            python -c "import openai; print(openai.__version__)"
+
+2. INSTALL PYTHON
+-----------------
+Install a current 64-bit Python 3.12 release.
+
+During installation:
+- Enable "Add python.exe to PATH".
+- Reopen PowerShell after installation.
+
+Verify:
+
+    python --version
+    py --version
+    pip --version
+
+3. INSTALL GIT
+--------------
+Install Git for Windows.
+
+Verify:
+
+    git --version
+
+Optional configuration:
+
+    git config --global user.name "Your Name"
+    git config --global user.email "your.email@example.com"
+
+4. INSTALL VS CODE
+------------------
+Install Visual Studio Code.
+
+Recommended extensions:
+- Python
+- Pylance
+- Python Debugger
+- GitLens (optional)
+
+Verify:
+
+    code --version
+
+5. CREATE THE PROJECT
+---------------------
+Open PowerShell:
+
+    cd $HOME\Documents
+    mkdir llm-ragas-testing
+    cd llm-ragas-testing
+    code .
+
+6. CREATE A PYTHON VIRTUAL ENVIRONMENT
+--------------------------------------
+
+    py -3.11 -m venv .venv
+
+Activate:
+
+    .\.venv\Scripts\Activate.ps1
+
+Upgrade pip:
+
+    python -m pip install --upgrade pip setuptools wheel
+
+Verify:
+
+    python --version
+    where.exe python
+
+If PowerShell blocks Activate.ps1:
+
+    Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+
+Then:
+
+    .\.venv\Scripts\Activate.ps1
+
+7. INSTALL RAGAS AND SUPPORTING PACKAGES
+----------------------------------------
+
+    python -m pip install --upgrade ragas
+    python -m pip install --upgrade openai langchain-core langchain-openai
+    python -m pip install --upgrade python-dotenv pandas
+
+8. VERIFY INSTALLATION
+----------------------
+
+    python -c "import ragas; print('RAGAS:', ragas.__version__)"
+    python -c "import openai; print('OpenAI:', openai.__version__)"
+    python -c "from ragas import EvaluationDataset, SingleTurnSample; print('RAGAS dataset imports: OK')"
+    python -c "from ragas.metrics import Faithfulness, LLMContextRecall; print('RAGAS metrics imports: OK')"
+
+9. CONFIGURE OPENAI API KEY
+---------------------------
+For a local PowerShell session:
+
+    $env:OPENAI_API_KEY = "YOUR_API_KEY_HERE"
+
+Verify without printing the secret:
+
+    if ($env:OPENAI_API_KEY) { Write-Host "OPENAI_API_KEY is configured" }
+
+Do NOT:
+- Hard-code API keys in Python.
+- Commit API keys to Git.
+- Put API keys into screenshots or reports.
+
+10. CREATE PROJECT STRUCTURE
+----------------------------
+
+    mkdir data
+    mkdir src
+    mkdir results
+
+    New-Item eval_ragas.py -ItemType File
+    New-Item requirements.txt -ItemType File
+    New-Item .gitignore -ItemType File
+
+11. CREATE requirements.txt
+---------------------------
+
+    ragas
+    openai
+    langchain-core
+    langchain-openai
+    python-dotenv
+    pandas
+
+Install:
+
+    python -m pip install -r requirements.txt
+
+Freeze the working environment:
+
+    python -m pip freeze > requirements-lock.txt
+
+
+
+END OF GUIDE
+============
