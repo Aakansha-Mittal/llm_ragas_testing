@@ -1,0 +1,62 @@
+
+==========================================
+LOCAL OLLAMA LLM EVALUATION BENCHMARK
+==========================================
+
+Evaluation Dataset
+-------------------
+Total Test Cases: 56
+
+
+Evaluation Model
+----------------
+LLM Model       : qwen2.5:3b
+Embedding Model : nomic-embed-text
+Provider        : Ollama
+Mode            : Local
+
+
+Metrics
+-------
+Faithfulness Threshold     : 0.85
+Answer Relevancy Threshold : 0.8
+Context Precision Threshold: 0.8
+
+
+Average Scores
+--------------
+Faithfulness      : 0.6092
+Answer Relevancy  : 0.5793
+Context Precision : 0.8929
+
+
+Test Results
+------------
+PASS  : 22
+FAIL  : 34
+ERROR : 0
+
+
+Overall Pass Rate
+-----------------
+39.29%
+
+
+Metric Pass Rates
+-----------------
+
+Faithfulness:
+53.57%
+
+
+Answer Relevancy:
+58.93%
+
+
+Context Precision:
+89.29%
+
+
+==========================================
+END OF REPORT
+==========================================
